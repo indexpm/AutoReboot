@@ -1,8 +1,8 @@
 name: AutoReboot
-author: WhatClick
-website: https://github.com/WhatClick/AutoReboot
+author: Mexipajas
+website: https://github.com/Mexipajas/AutoReboot
 
-version: 0.0.1
+version: 0.0.1-MXPJS
 main: AutoReboot\Main
 api: 5.28.1
 
