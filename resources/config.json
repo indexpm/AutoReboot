@@ -1,0 +1,4 @@
+{
+  "reboot_interval": 3600,
+  "time_unit": "seconds"
+}
