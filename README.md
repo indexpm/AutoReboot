@@ -26,4 +26,4 @@ After installation, you can use the `/setreboottime` or `/srt` command in-game t
 Contributions to the AutoReboot plugin are welcome. Please submit a pull request or open an issue for any enhancements or bug fixes.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the Apache License. See the LICENSE file for more details.
