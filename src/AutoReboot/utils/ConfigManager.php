@@ -5,33 +5,35 @@ namespace AutoReboot\utils;
 use pocketmine\utils\Config;
 
 class ConfigManager {
-    private $config;
+
+    private Config $config;
+    private string $filePath;
 
     public function __construct(string $filePath) {
-        $this->loadConfig($filePath);
+        $this->filePath = $filePath;
+        $this->loadConfig();
     }
 
-    public function loadConfig(string $filePath): void {
-        if (file_exists($filePath)) {
-            $this->config = new Config($filePath, Config::JSON);
-        } else {
-            $this->config = new Config($filePath, Config::JSON, [
-                "reboot_interval" => 3600
-            ]);
-            $this->saveConfig($filePath);
-        }
+    public function loadConfig(): void {
+        $this->config = new Config($this->filePath, Config::JSON, [
+            "reboot_interval" => 3600
+        ]);
     }
 
-    public function saveConfig(string $filePath): void {
+    public function saveConfig(): void {
         $this->config->save();
     }
 
     public function getRebootInterval(): int {
-        return $this->config->get("reboot_interval");
+        return (int) $this->config->get("reboot_interval", 3600);
     }
 
     public function setRebootInterval(int $interval): void {
         $this->config->set("reboot_interval", $interval);
-        $this->saveConfig($this->config->getFile());
+        $this->saveConfig();
+    }
+
+    public function getConfig(): Config {
+        return $this->config;
     }
 }
