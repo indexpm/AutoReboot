@@ -1,18 +1,24 @@
 <?php
 
-trait SingletonTrait {
-    private static $instance;
+namespace AutoReboot\traits;
 
-    public static function getInstance() {
-        if (self::$instance === null) {
-            self::$instance = new static();
-        }
+trait SingletonTrait {
+
+    private static self $instance;
+
+    public static function getInstance(): self {
         return self::$instance;
     }
 
-    private function __construct() {}
+    public static function setInstance(self $instance): void {
+        self::$instance = $instance;
+    }
 
-    private function __clone() {}
+    protected function __clone(): void {
 
-    private function __wakeup() {}
+    }
+
+    public function __wakeup(): void {
+
+    }
 }
