@@ -2,13 +2,11 @@ name: AutoReboot
 author: Mexipajas
 website: https://github.com/Mexipajas/AutoReboot
 
-version: 0.0.1-MXPJS
+version: 0.0.2-MXPJS
 main: AutoReboot\Main
 api: 5.28.1
 
-commands:
-  setreboottime:
-    description: Set the automatic reboot time interval
-    usage: /setreboottime <time in seconds>
-    permission: autoreboot.command.setreboottime
-    permission-message: You do not have permission to use this command.
+permissions:
+  autoreboot.command.setreboottime:
+    description: Permite usar el comando /setreboottime
+    default: op
