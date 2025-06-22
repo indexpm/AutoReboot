@@ -4,37 +4,40 @@ namespace AutoReboot\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\PluginBase;
+
+use pocketmine\utils\TextFormat as TF;
 
 use AutoReboot\utils\ConfigManager;
+use AutoReboot\Main;
 
 class SetRebootTimeCommand extends Command {
 
-    private $configManager;
+    private ConfigManager $configManager;
 
     public function __construct(ConfigManager $configManager) {
-        parent::__construct("setreboottime", "Set the reboot time interval", "/setreboottime <time>");
+        parent::__construct("setreboottime", "Set the reboot time interval", "/setreboottime <time>", ["srt"]); 
+        $this->setPermission("autoreboot.command.setreboottime");
         $this->configManager = $configManager;
     }
 
-    public function execute(CommandSender $sender, string $commandLabel, array $args): void {
+    public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if (!$sender->hasPermission("autoreboot.command.setreboottime")) {
-            $sender->sendMessage("You do not have permission to use this command.");
-            return;
+            $sender->sendMessage(TF::RED . "You do not have permission to use this command.");
+            return false;
         }
 
-        if (count($args) !== 1) {
-            $sender->sendMessage("Usage: /setreboottime <time>");
-            return;
+        if (count($args) !== 1 || !is_numeric($args[0]) || (int)$args[0] <= 0) {
+            $sender->sendMessage(TF::RED . "Usage: /setreboottime <time>");
+            return false;
         }
 
-        $time = intval($args[0]);
-        if ($time <= 0) {
-            $sender->sendMessage("Please enter a valid time interval in seconds.");
-            return;
-        }
+        $time = (int)$args[0];
+        $this->configManager->setRebootInterval($time);
 
-        $this->configManager->setRebootTime($time);
-        $sender->sendMessage("Reboot time has been set to " . $time . " seconds.");
+        Main::getInstance()->reschedule();
+
+        $sender->sendMessage(TF::GREEN . "Reboot time has been set to " . $time . " seconds.");
+        return true;
     }
 }
+
