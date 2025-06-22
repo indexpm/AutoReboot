@@ -14,13 +14,13 @@ The AutoReboot plugin for PocketMine-MP allows server administrators to automati
 3. Start the server to generate the configuration file.
 
 ## Configuration
-The plugin uses a JSON configuration file located at `resources/config.json`. You can specify the reboot interval in seconds. The default configuration can be modified to suit your needs.
+The plugin uses a JSON configuration file located at `files/plugin_data/AutoReboot/resources/config.json`. You can specify the reboot interval in seconds. The default configuration can be modified to suit your needs.
 
 ## Commands
-- `/setreboottime <time>`: Changes the reboot time interval. The time is specified in seconds. This command updates the configuration file automatically.
+- `/setreboottime <time>` or `/srt <time>`: Changes the reboot time interval. The time is specified in seconds. This command updates the configuration file automatically.
 
 ## Usage
-After installation, you can use the `/setreboottime` command in-game to set the desired reboot interval. The server will automatically restart based on the specified time settings.
+After installation, you can use the `/setreboottime` or `/srt` command in-game to set the desired reboot interval. The server will automatically restart based on the specified time settings.
 
 ## Contributing
 Contributions to the AutoReboot plugin are welcome. Please submit a pull request or open an issue for any enhancements or bug fixes.
