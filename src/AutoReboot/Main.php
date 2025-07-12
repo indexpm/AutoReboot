@@ -36,7 +36,7 @@ class Main extends PluginBase {
         $interval = $this->configManager->getRebootInterval();
 
         if ($this->rebootTask <= 0) {
-            $this->getLogger()->warning("El intervalo de reinicio es 0 o negativo, no se programará el reinicio automático.");
+            $this->getLogger()->warning("If the restart interval is 0 or negative, the automatic restart will not be scheduled.");
             return;
         }
 
