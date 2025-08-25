@@ -4,7 +4,7 @@ website: https://github.com/Mexipajas/AutoReboot
 
 version: 0.0.2-MXPJS
 main: AutoReboot\Main
-api: 5.28.1
+api: 5.32.1
 
 permissions:
   autoreboot.command.setreboottime:
